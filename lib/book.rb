@@ -2,6 +2,9 @@ class Book
   attr_reader :title,
               :author,
               :publication_year
+  attr_accessor :title,
+                :author,
+                :publication_year
 
   def initialize(data)
     @title = data[:title]
