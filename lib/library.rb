@@ -24,4 +24,10 @@ class Library
     publication_years[:end] = years.last
     publication_years
   end
+
+  def checkout(book)
+    @books.any?do |book|
+      book
+    end
+  end
 end
