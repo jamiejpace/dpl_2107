@@ -1,5 +1,6 @@
 require './lib/library'
 require './lib/author'
+require './lib/book'
 
 RSpec.describe Library do
   it 'exists' do
@@ -59,5 +60,28 @@ RSpec.describe Library do
     expect(dpl.checkout(jane_eyre)).to eq(false)
     expect(dpl.checkout(mockingbird)).to eq(false)
 
+    dpl.add_author(charlotte_bronte)
+    dpl.add_author(harper_lee)
+
+
+    expect(dpl.checkout(jane_eyre)).to eq(true)
+    expect(dpl.checked_out_books).to eq([jane_eyre])
+
+    dpl.return(jane_eyre)
+
+    expect(dpl.checked_out_books).to eq([])
+
+    dpl.checkout(jane_eyre)
+    dpl.checkout(villette)
+
+    expect(dpl.checked_out_books).to eq([jane_eyre, villette])
+
+    dpl.checkout(mockingbird)
+    dpl.return(mockingbird)
+    dpl.checkout(mockingbird)
+    dpl.return(mockingbird)
+    dpl.checkout(mockingbird)
+
+    expect(dpl.most_popular_book).to eq(mockingbird)
   end
 end
